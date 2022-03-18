@@ -96,7 +96,7 @@ powerButton.addEventListener('click', () => {
     // shut the vm off by going back to the start page
     // but first we need user confirmation
     if (confirm('Are you sure you want to shut down the VM?')) {
-        window.location.href = 'KaOSVM.html';
+        window.location.href = '../index.html';
     }
 });
 // reboot e vm by refreshing
