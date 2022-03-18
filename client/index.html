@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KaOS VM Client</title>
+        <link rel="stylesheet" href="../style/client.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/970a0290cd.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!--Fallback button if Esc key not working-->
+        <header id="tools">
+            <img src="../assets/KaOS13Logo.png" height="40" style="display: inline-block;"></img>
+            <div class="toolbar">
+                <button class="toolbar-button" id="shutoff-button" title="Shutdown">
+                    <i class="fa-solid fa-power-off"></i>
+                </button>
+                <button class="toolbar-button" id="reboot-button" title="Reset (or restart)">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+                <button class="toolbar-button" id="suspend-button" title="Suspend">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+                <button class="toolbar-button" id="hibernate-button" title="Hibernate VM">
+                    <i class="fa-solid fa-bed"></i>
+                </button>
+                <button class="toolbar-button" id="lock-button" title="Lock">
+                    <i class="fa-solid fa-lock"></i>
+                </button>
+                <button class="toolbar-button" id="fullscreen-button" title="Fullscreen">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </button>
+                <button class="toolbar-button" id="about-button" title="About">
+                    <i class="fa-solid fa-info-circle"></i>
+                </button>
+            </div>
+        </header>
+        <div class="fallback-button" id="angle-down">
+        </div>
+        <div id="suspend" style="position: absolute; top: 0; right: 0; bottom: 0: left: 0; background-color: #000000; opacity: 0.5; display: none; z-index: 2;"></div>
+        <p style="text-align: center; display: none;" id="indicator">No OS specified</p>
+        <iframe src="" class="VMFrame" id="VM" height="100%" width="100%" style="position: absolute; top: 0; right: 0; bottom: 0: left: 0;"></iframe>
+        <div class="dialogFrame" id="about">
+            <div class="aboutFrame-content">
+                <div class="aboutFrame-header">
+                    <h1>About</h1>
+                    <button class="dialogFrame-close" id="close-about">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="aboutFrame-body">
+                    <p>
+                        The KaOS VM is a web-based virtualization app that allows you to run browser-based OS.
+                    </p>
+                    <br>
+                    <p>Version 0.8.4 (prealpha)</p>
+                    <p>GitHub repo later.</p>
+                </div>
+            </div>
+        </div>
+        <script src="client.js"></script>
+    </body>
+</html>
