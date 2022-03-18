@@ -8,6 +8,10 @@ To use an OS outside of the selection, read more about it in the [API documentat
 To enable or appear the menubar, hover on the top or press Esc button.
 
 ![Imgur](https://i.imgur.com/cezjlLV.gif)
+### Here is what you must do when about to lock your VM
+When prompted for first time, you must input it blank, otherwise it will say as `Wrong Password`. After that, you may relock then set your password.
+
+**Note: The password will be stored and will be cleared when refreshed**
 # API Documentation
 ***Sorry ya, I only provide 1 API parameters***
 
