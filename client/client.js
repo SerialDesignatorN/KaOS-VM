@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (settings !== undefined) {
         settings = JSON.parse(settings);
         quality.value = settings.quality;
+        qualityIndicator.innerHTML = 'VM Quality: ' + settings.quality;
         developerMode.checked = settings.developerMode;
         hardwareAcceleration.checked = settings.hardwareAcceleration;
         hardwareScaling.checked = settings.hardwareScaling;
