@@ -7,6 +7,7 @@ const powerButton = document.getElementById('shutoff-button');
 const rebootButton = document.getElementById('reboot-button');
 const aboutButton = document.getElementById('about-button');
 const quality = document.getElementById('quality');
+const saveButton = document.getElementById('save-button');
 const cpuIndicator = document.getElementById('cpu-indicator');
 const ramIndicator = document.getElementById('ram-indicator');
 const developerMode = document.getElementById('developer-mode');
@@ -27,8 +28,38 @@ if (os !== null) {
     VM.setAttribute('src', os);
 } else {
     alert('You must specify a OS');
-    indicator.style.display = 'block';
+    indicator.style.display = 'flex';
 }
+// save ALL of these settings in a cookie
+saveButton.addEventListener('click', function () {
+    var settings = {
+        quality: quality.value,
+        developerMode: developerMode.checked,
+        hardwareAcceleration: hardwareAcceleration.checked,
+        hardwareScaling: hardwareScaling.checked,
+        hardwareRendering: hardwareRendering.checked
+    };
+    document.cookie = 'settings=' + JSON.stringify(settings);
+    // appear the indicator and say it "Successfully saved" for 3 seconds
+    indicator.style.display = 'flex';
+    indicator.innerHTML = 'Successfully saved';
+    setTimeout(function () {
+        indicator.style.display = 'none';
+    }
+    , 3000);
+});
+// when document autoloads, load the cookie settings
+document.addEventListener('DOMContentLoaded', function () {
+    var settings = document.cookie.split('=')[1];
+    if (settings !== undefined) {
+        settings = JSON.parse(settings);
+        quality.value = settings.quality;
+        developerMode.checked = settings.developerMode;
+        hardwareAcceleration.checked = settings.hardwareAcceleration;
+        hardwareScaling.checked = settings.hardwareScaling;
+        hardwareRendering.checked = settings.hardwareRendering;
+    }
+});
 // display what cpu does the computer use (e.g. intel core i7, etc)
 function checkCPU() {
     var xhr = new XMLHttpRequest();
@@ -47,7 +78,6 @@ function checkCPU() {
             console.log('FAIL: Response text: ' + this.responseText);
         }
     };
-    xhr.send();
 }
 // check this page memory usage
 function checkMemoryUsage() {
@@ -161,7 +191,7 @@ lockButton.addEventListener('click', () => {
             VM.style.display = 'none';
             VM.style.display = 'none';
             alert('The VM is now locked');
-            indicator.style.display = 'block';
+            indicator.style.display = 'flex';
             indicator.innerHTML = 'The VM is currently locked. Click the <i class="fa-solid fa-lock"></i> again to unlock';
         } else {
             passcode = prompt('Set a passcode (this is needed so your VM wont be messed up by a baby :)');
@@ -171,7 +201,7 @@ lockButton.addEventListener('click', () => {
             }
             VM.style.display = 'none';
             alert('The VM is now locked');
-            indicator.style.display = 'block';
+            indicator.style.display = 'flex';
             indicator.innerHTML = 'The VM is currently locked. Click the <i class="fa-solid fa-lock"></i> again to unlock';
         }
     }

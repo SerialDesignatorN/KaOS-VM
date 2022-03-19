@@ -26,6 +26,9 @@
                 <button class="toolbar-button" id="lock-button" title="Lock">
                     <i class="fa-solid fa-lock"></i>
                 </button>
+                <button class="toolbar-button" id="save-button" title="Save">
+                    <i class="fa-solid fa-save"></i>
+                </button>
                 <button class="toolbar-button" id="fullscreen-button" title="Fullscreen">
                     <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
                 </button>
@@ -40,7 +43,7 @@
         <div class="fallback-button" id="angle-down">
         </div>
         <div id="suspend" style="position: absolute; top: 0; right: 0; bottom: 0: left: 0; background-color: #000000; opacity: 0.5; display: none; z-index: 2;"></div>
-        <p style="text-align: center; display: none;" id="indicator">No OS specified</p>
+        <p style="text-align: center; display: none; background-color: #2e2e2e; padding: 10px; border-radius: 5px;" id="indicator">No OS specified</p>
         <iframe src="" class="VMFrame" id="VM" height="100%" width="100%" style="position: absolute; top: 0; right: 0; bottom: 0: left: 0;"></iframe>
         <div class="dialogFrame" id="about">
             <div class="aboutFrame-content">
@@ -71,13 +74,13 @@
                 <div class="aboutFrame-body">
                     <div class="text">Use hardware acceleration</div>
                     <label class="switch">
-                        <input type="checkbox" id="hardware-acceleration" checked>
+                        <input type="checkbox" id="hardware-acceleration" checked="true">
                         <span class="slider round"></span>
                     </label>
                     <br>
                     <div class="text">Use hardware scaling</div>
                     <label class="switch">
-                        <input type="checkbox" id="hardware-scaling" checked>
+                        <input type="checkbox" id="hardware-scaling" checked="true">
                         <span class="slider round"></span>
                     </label>
                     <br>
