@@ -32,6 +32,9 @@
                 <button class="toolbar-button" id="about-button" title="About">
                     <i class="fa-solid fa-info-circle"></i>
                 </button>
+                <button class="toolbar-button" id="settings-button" title="Settings">
+                    <i class="fa-solid fa-cog"></i>
+                </button>
             </div>
         </header>
         <div class="fallback-button" id="angle-down">
@@ -54,6 +57,57 @@
                     <br>
                     <p>Version 0.8.4 (prealpha)</p>
                     <p>Click here for <a href="https://github.com/zeankundev/KaOS-VM">GitHub repo</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="dialogFrame" id="settings">
+            <div class="aboutFrame-content">
+                <div class="aboutFrame-header">
+                    <h1>Settings</h1>
+                    <button class="dialogFrame-close" id="close-settings">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="aboutFrame-body">
+                    <div class="text">Use hardware acceleration</div>
+                    <label class="switch">
+                        <input type="checkbox" id="hardware-acceleration" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <div class="text">Use hardware scaling</div>
+                    <label class="switch">
+                        <input type="checkbox" id="hardware-scaling" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <div class="text">Use hardware rendering</div>
+                    <label class="switch">
+                        <input type="checkbox" id="hardware-rendering">
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <b>WARNING! This will override your computer in some cases</b>
+                    <br>
+                    <div class="text" id="quality-indicator">VM Quality: Auto</div>
+                    <label class="range">
+                        <input type="range" min="0" max="100" value="50" step="1" id="quality">
+                        <output id="quality-output"></output>
+                    </label>
+                    <br>
+                    <div class="text">Enable developer mode</div>
+                    <label class="switch">
+                        <input type="checkbox" id="developer-mode">
+                        <span class="slider round"></span>
+                    </label>
+                    <br>
+                    <div id="devmode" style="display: none; overflow: auto;">
+                        <h2>Developer Mode</h2>
+                        <br>
+                        <div class="text" id="ram-indicator">RAM Consumption: 0%</div>
+                        <br>
+                        <div class="text" id="cpu-indicator">CPU: foo-bar</div>
+                    </div>
                 </div>
             </div>
         </div>

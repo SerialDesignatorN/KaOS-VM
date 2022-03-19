@@ -6,6 +6,14 @@ const VM = document.getElementById('VM');
 const powerButton = document.getElementById('shutoff-button');
 const rebootButton = document.getElementById('reboot-button');
 const aboutButton = document.getElementById('about-button');
+const quality = document.getElementById('quality');
+const cpuIndicator = document.getElementById('cpu-indicator');
+const ramIndicator = document.getElementById('ram-indicator');
+const developerMode = document.getElementById('developer-mode');
+const hardwareAcceleration = document.getElementById('hardware-acceleration');
+const hardwareScaling = document.getElementById('hardware-scaling');
+const hardwareRendering = document.getElementById('hardware-rendering');
+const settingsButton = document.getElementById('settings-button');
 const hibernateButton = document.getElementById('hibernate-button');
 const fullScreenButton = document.getElementById('fullscreen-button');
 const suspendModal = document.getElementById('suspend');
@@ -14,16 +22,116 @@ const lockButton = document.getElementById('lock-button');
 const down = document.getElementById('angle-down');
 const indicator = document.getElementById('indicator');
 const os = urlParams.get('os');
+checkCPU();
 if (os !== null) {
     VM.setAttribute('src', os);
 } else {
     alert('You must specify a OS');
     indicator.style.display = 'block';
 }
+// display what cpu does the computer use (e.g. intel core i7, etc)
+function checkCPU() {
+    var xhr = new XMLHttpRequest();
+    // cpu benchmark failed, we are gonna choose another api
+    xhr.onload = function () {
+        if (this.status === 200) {
+            console.log('OK: Response text: ' + this.responseText);
+            var data = JSON.parse(this.responseText);
+            var cpu = data.cpus[0].name;
+            cpuIndicator.innerHTML = 'CPU: ' + cpu;
+        }
+        else if (this.status === 400) {
+            console.log('FAIL: Response text: ' + this.responseText);
+        }
+        else if (this.status === 500) {
+            console.log('FAIL: Response text: ' + this.responseText);
+        }
+    };
+    xhr.send();
+}
+// check this page memory usage
+function checkMemoryUsage() {
+    var memory = performance.memory;
+    var used = memory.usedJSHeapSize / memory.totalJSHeapSize * 100;
+    ramIndicator.innerHTML = 'RAM Consumption: ' + Math.round(used) + '%';
+    console.log('HEAP: Memory usage: ' + Math.round(used) + '%');
+}
+const interval = setInterval(checkMemoryUsage, 1000);
+// show devmode div devmode checkbox is checked
+developerMode.addEventListener('click', function () {
+    if (developerMode.checked) {
+        document.getElementById('devmode').style.display = 'block';
+    } else {
+        document.getElementById('devmode').style.display = 'none';
+    }
+});
+// read quality value from range
+quality.addEventListener('input', function () {
+    const qualityIndicator = document.getElementById('quality-indicator');
+    // set the vm quality
+    VM.setAttribute('quality', quality.value);
+    // set the quality indicator
+    qualityIndicator.innerHTML = 'VM Quality: ' + quality.value;
+    console.log('OK: VM quality set to ' + quality.value);
+    // if hardware acceleration is enabled
+    if (hardwareAcceleration.checked) {
+        // set the vm quality
+        VM.setAttribute('hardwareAcceleration', 'true');
+        // set the quality indicator
+        qualityIndicator.innerHTML = 'VM Quality: ' + quality.value + ' (Hardware Acceleration)';
+        console.log('OK: VM quality set to ' + quality.value + ' (Hardware Acceleration)');
+    }
+    // set to auto when value is 50
+    if (quality.value === '50') {
+        VM.setAttribute('hardwareScaling', 'auto');
+        console.log('OK: VM hardware scaling set to auto');
+    }
+});
+// enable hardware rendering to VM element
+hardwareRendering.addEventListener('click', function () {
+    if (hardwareRendering.checked) {
+        VM.setAttribute('hardware-rendering', 'true');
+        console.log('OK: hardware rendering enabled');
+    } else {
+        VM.setAttribute('hardware-rendering', 'false');
+        console.log('OK: hardware rendering disabled');
+    }
+});
+// enable hardware scaling when checkbox is checked
+hardwareScaling.addEventListener('change', function () {
+    if (hardwareScaling.checked) {
+        VM.setAttribute('scaling', 'true');
+        console.log('OK: Hardware scaling enabled');
+    } else {
+        VM.setAttribute('scaling', 'false');
+        console.log('OK: Hardware scaling disabled');
+    }
+});
+// enable hardware acceleration when checkbox is ticked
+hardwareAcceleration.addEventListener('change', function () {
+    if (hardwareAcceleration.checked) {
+        VM.setAttribute('webkit-transform-3d', 'true');
+        console.log('OK: Hardware acceleration enabled');
+    } else {
+        VM.removeAttribute('webkit-transform-3d');
+        console.log('OK: Hardware acceleration disabled');
+    }
+});
 // show the about dialog when about button is clicked
 aboutButton.addEventListener('click', function () {
     const about = document.getElementById('about');
     about.style.display = 'flex';
+});
+// show the settings dialog when cog is clicked
+settingsButton.addEventListener('click', function () {
+    const settings = document.getElementById('settings');
+    settings.style.display = 'flex';
+});
+// hide the settings dialog when the close button is clicked
+const closeSettings = document.getElementById('close-settings');
+closeSettings.addEventListener('click', function () {
+    const settings = document.getElementById('settings');
+    settings.style.display = 'none';
 });
 // hide the about dialog when close button is clicked
 const closeAbout = document.getElementById('close-about');
