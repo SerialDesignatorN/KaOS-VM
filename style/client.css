@@ -1,7 +1,7 @@
 * {
     margin: 0;
     overflow: hidden;
-    font-family: Inter, system-ui;
+    font-family: system-ui;
     color: white;
 }
 body {
@@ -20,7 +20,7 @@ body {
 }
 .text {
     display: inline-block;
-    font-family: 'Inter', system-ui;
+    font-family: system-ui;
     color: white;
     margin-bottom: 5px !important;
     padding-right: 10px;
