@@ -87,7 +87,7 @@ function checkMemoryUsage() {
     ramIndicator.innerHTML = 'RAM Consumption: ' + Math.round(used) + '%';
     console.log('HEAP: Memory usage: ' + Math.round(used) + '%');
 }
-const interval = setInterval(checkMemoryUsage, 1000);
+const interval = setInterval(checkMemoryUsage, 1);
 // show devmode div devmode checkbox is checked
 developerMode.addEventListener('click', function () {
     if (developerMode.checked) {
