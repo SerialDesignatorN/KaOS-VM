@@ -193,7 +193,7 @@ lockButton.addEventListener('click', () => {
             VM.style.display = 'none';
             alert('The VM is now locked');
             indicator.style.display = 'flex';
-            indicator.innerHTML = 'The VM is currently locked. Click the <i class="fa-solid fa-lock"></i> again to unlock';
+            indicator.innerHTML = 'The VM is currently locked. Click the &nbsp; <i class="fa-solid fa-lock"></i> &nbsp; again to unlock';
         } else {
             passcode = prompt('Set a passcode (this is needed so your VM wont be messed up by a baby :)');
             if (passcode === null) {
@@ -203,7 +203,7 @@ lockButton.addEventListener('click', () => {
             VM.style.display = 'none';
             alert('The VM is now locked');
             indicator.style.display = 'flex';
-            indicator.innerHTML = 'The VM is currently locked. Click the <i class="fa-solid fa-lock"></i> again to unlock';
+            indicator.innerHTML = 'The VM is currently locked. Click the &nbsp; <i class="fa-solid fa-lock"></i> &nbsp; again to unlock';
         }
     }
     else {
